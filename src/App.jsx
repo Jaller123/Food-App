@@ -1,10 +1,10 @@
 import React from 'react'
-import Search from './Components/Search'
+import FoodData from './Components/FoodData'
 
 const App = () => {
   return (
     <div className='App'>
-      <Search />
+      <FoodData />
     </div>
 
   )
