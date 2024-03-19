@@ -2,27 +2,31 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 
 
-let url = "https://www.themealdb.com/api/json/v1/1/search.php?s="
-let API_KEY = "1"
+
 
 
 
 const Search = ({ foodData, setFoodData }) => {
   const searchText = useRef();
-  const [query, setQuery] = useState("Enter a Recipe");
+  const [query, setQuery] = useState(); 
+  /* The input Value has "query" which
+   can be any value depending on what the user writes.*/
 
   useEffect(() => 
   {
     async function fetchFood() 
     {
+      let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText.current.value}`
       const res = await fetch(`${url}`);
       const data = await res.json();
-      console.log(data);
+      console.log(data.meals);
       setFoodData(data.meals);
     }
 
     fetchFood();
-  }, []);
+  }, [query]); 
+  /*We use the query in the UseEffect Array so whenever the input field is
+  changed the effect rerenders*/
 
   return (
     <div>
