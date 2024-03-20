@@ -9,7 +9,7 @@ const FoodList = () => {
     <div>
       <Search setFoodData={setFoodData} />
 
-      {foodData.length > 0 && foodData.map((foodItem) => (
+      {foodData && foodData.map((foodItem) => (
         
         <FoodItem key={foodItem.idMeal} foodProp={foodItem} />
          /*
