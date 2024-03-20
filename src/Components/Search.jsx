@@ -26,13 +26,16 @@ const Search = ({ foodData, setFoodData }) => {
     if (query) 
     {
       fetchFood();
-    }
+    }  
+
   }, [query]); 
   /*We use the query in the UseEffect Array so whenever the input field is
   changed the effect rerenders*/
 
   return (
+    
     <div>
+      
         <input onChange={()=>setQuery(searchText.current.value)}type="text" ref={searchText} />
     </div> // The input value will be updated from the state "setQuery" and is referred from the "searchText"
   )
