@@ -9,8 +9,9 @@ const FoodList = () => {
     <div>
       <Search setFoodData={setFoodData} />
 
-      {foodData.map((food) => (
-        <FoodItem key={food.idMeal} food={food} />
+      {foodData.length > 0 && foodData.map((foodItem) => (
+        
+        <FoodItem key={foodItem.idMeal} foodProp={foodItem} />
          /*
          Passes the props of the food data into the FoodItem.jsx and loops
          through the food objects in that component. 

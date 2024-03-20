@@ -5,10 +5,10 @@ import { useState, useEffect, useRef } from 'react'
 
 
 
-
+// FoodList sends the data in props as "setFoodData"
 const Search = ({ foodData, setFoodData }) => {
   const searchText = useRef();
-  const [query, setQuery] = useState(); 
+  const [query, setQuery] = useState(null); 
   /* The input Value has "query" which
    can be any value depending on what the user writes.*/
 
@@ -23,7 +23,10 @@ const Search = ({ foodData, setFoodData }) => {
       setFoodData(data.meals);
     }
 
-    fetchFood();
+    if (query) 
+    {
+      fetchFood();
+    }
   }, [query]); 
   /*We use the query in the UseEffect Array so whenever the input field is
   changed the effect rerenders*/
