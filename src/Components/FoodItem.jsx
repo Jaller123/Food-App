@@ -28,12 +28,13 @@ const FoodItem = ({foodProp}) => {
             list item is created based on the index and each index has a unique key.
             The indexes of the strIngredient is accessed by going through 0 to 14 hence: 
             "Index + 1"*/}
-            {Array.from({ length: 15 }, (_, index) => (
-              <li key={index}>{foodProp[`strIngredient${index + 1}`]}</li>
+            {Array.from({ length: 13 }, (_, index) => (
+              <li key={index}>{foodProp[`strIngredient${index + 1}`]} // <b>{foodProp[`strMeasure${index + 1}`]}</b></li>
             ))}
           </ul>
           <h4>Instructions:</h4>
           <p>{foodProp.strInstructions}</p>
+          <h5>Source: {foodProp.strSource}</h5>
         </div>
       )}
         <button onClick={() => handleClick()}>View/Hide Recipe</button>
