@@ -2,9 +2,6 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 
 
-
-
-
 // FoodList sends the data in props as "setFoodData"
 const Search = ({ foodData, setFoodData }) => {
   const searchText = useRef();
