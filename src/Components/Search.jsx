@@ -33,7 +33,7 @@ const Search = ({ foodData, setFoodData }) => {
     
     <div>
       
-        <input onChange={()=>setQuery(searchText.current.value)}type="text" ref={searchText} />
+        <input className="Search" onChange={()=>setQuery(searchText.current.value)}type="text" ref={searchText} />
     </div> // The input value will be updated from the state "setQuery" and is referred from the "searchText"
   )
 }

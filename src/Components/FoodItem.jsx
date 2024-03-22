@@ -37,7 +37,7 @@ const FoodItem = ({foodProp}) => {
           <h5>Source: {foodProp.strSource}</h5>
         </div>
       )}
-        <button onClick={() => handleClick()}>View/Hide Recipe</button>
+        <button className="recipeBtn"onClick={() => handleClick()}>View/Hide Recipe</button>
     </div>
      /*The Key helps rendering every h1 tag to each and every unique idMeal 
          while the strMeal displays the title of each food */
