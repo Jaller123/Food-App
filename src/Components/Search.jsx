@@ -23,7 +23,12 @@ const Search = ({ foodData, setFoodData }) => {
     if (query) 
     {
       fetchFood();
-    }  
+    }
+    
+    else
+    {
+      setFoodData(null)
+    }
 
   }, [query]); 
   /*We use the query in the UseEffect Array so whenever the input field is
