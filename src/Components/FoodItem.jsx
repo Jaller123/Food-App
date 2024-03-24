@@ -15,7 +15,7 @@ const FoodItem = ({foodProp}) => {
   return (
     <div>
 
-        <img src={foodProp.strMealThumb} alt="" />
+        <img className="foodImg" src={foodProp.strMealThumb} alt="" />
         <h1>{foodProp.strMeal}</h1>
         <h2>Country: {foodProp.strArea}</h2>
         <h2>Dish Type: {foodProp.strCategory}</h2>
