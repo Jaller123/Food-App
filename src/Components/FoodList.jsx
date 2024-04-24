@@ -7,7 +7,7 @@ const FoodList = () => {
 
   return (
     <div>
-      <Search setFoodData={setFoodData} />
+      <Search foodData = {foodData} setFoodData={setFoodData} />
 
       {foodData && foodData.map((foodItem) => (
         
