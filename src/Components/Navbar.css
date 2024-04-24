@@ -1,13 +1,43 @@
-.logo
+.logo 
 {
-  height: 10%;
-  width: 10%;
-  margin: 20px;
-  padding: 30px;
-  size: 2em;
+  height: 100px; 
+  width: auto; 
+  margin: 20px auto; 
+  display: block; 
 }
 
-.Search
+.Search 
 {
-  margin: 10px;
+  margin: 10px auto; 
+  display: block;
+  width: 50%; 
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+
+.Search:focus 
+{
+  outline: none;
+  border-color: #007bff; 
+}
+
+.Search::placeholder 
+{
+  color: #999; 
+}
+
+.SearchButton 
+{
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.SearchButton:hover 
+{
+  background-color: #0056b3; /* Darker color on hover */
 }

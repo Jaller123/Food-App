@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import './FoodItem.css'
 
 const FoodItem = ({foodProp}) => {
 
@@ -11,9 +12,10 @@ const FoodItem = ({foodProp}) => {
     setShowRecipe(!showRecipe);
     
   };
+  
 
   return (
-    <div>
+    <div className="FoodData">
 
         <img className="foodImg" src={foodProp.strMealThumb} alt="" />
         <h1>{foodProp.strMeal}</h1>
@@ -22,15 +24,24 @@ const FoodItem = ({foodProp}) => {
         {showRecipe && (
         <div>
           <h3>Ingredients:</h3>
-          <ul>
+          <ul className='Ingredients'>
             {/*Array.from creates a new array where the first arguement means that the
             array should have a length of 15 and the second arguement means that a new
             list item is created based on the index and each index has a unique key.
             The indexes of the strIngredient is accessed by going through 0 to 14 hence: 
             "Index + 1"*/}
-            {Array.from({ length: 13 }, (_, index) => (
-              <li key={index}>{foodProp[`strIngredient${index + 1}`]} // <b>{foodProp[`strMeasure${index + 1}`]}</b></li>
-            ))}
+           {Object.keys(foodProp).map(key => {
+           if (key.startsWith('strIngredient') && foodProp[key]) {
+            const index = key.replace('strIngredient', '');
+            const measure = foodProp[`strMeasure${index}`] || '';
+    return (
+      <li key={index}>
+        {foodProp[key]} <b>{measure}</b>
+      </li>
+    );
+  }
+  return null;
+})}
           </ul>
           <h4>Instructions:</h4>
           <p>{foodProp.strInstructions}</p>

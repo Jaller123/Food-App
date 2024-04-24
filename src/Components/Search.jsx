@@ -1,60 +1,37 @@
-import React from 'react'
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 
-
-// FoodList sends the data in props as "setFoodData"
 const Search = ({ foodData, setFoodData }) => {
-  const searchText = useRef();
-  const [query, setQuery] = useState(null); 
-  const debounceTimeout = useRef(null)
-  /* The input Value has "query" which
-   can be any value depending on what the user writes.*/
+  const searchText = useRef('');
+  const [query, setQuery] = useState('');
 
-  useEffect(() => 
-  {
-    async function fetchFood() 
-    {
-      let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText.current}`
-      const res = await fetch(`${url}`);
-      const data = await res.json();
-      console.log(data.meals);
-      setFoodData(data.meals);
-    }
+  useEffect(() => {
+    const fetchFood = async () => {
+      if (query.trim() !== '') {
+        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchText.current}`;
+        const res = await fetch(url);
+        const data = await res.json();
+        setFoodData(data.meals || []); // If data.meals is undefined, set an empty array
+      } else {
+        setFoodData([]); // If query is empty, set an empty array
+      }
+    };
 
-    if (query !== null) 
-    {
-      clearTimeout(debounceTimeout.current);
+    const timeoutId = setTimeout(fetchFood, 500);
 
-      debounceTimeout.current = setTimeout(fetchFood, 500)
-    }
-    
-    else
-    {
-      setFoodData(null)
-    }
+    return () => clearTimeout(timeoutId);
+  }, [query, setFoodData]);
 
-    return () => 
-    {
-      clearTimeout(debounceTimeout.current)
-    }
-  }, [query]); 
-  /*We use the query in the UseEffect Array so whenever the input field is
-  changed the effect rerenders*/
-
-  const handleChange = (e) => //This function is used to update the query
-  {
-    setQuery(e.target.value)
-    searchText.current = e.target.value
-  }
-
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+    searchText.current = e.target.value;
+  };
 
   return (
-    
     <div>
-      
       <input className="Search" onChange={handleChange} type="text" placeholder="Search for a Recipe" />
-    </div> // The input value will be updated from the state "setQuery" and is referred from the "searchText"
-  )
-}
+      {query !== '' && !foodData.length && <p>No Recipe found</p>}
+    </div>
+  );
+};
 
-export default Search
+export default Search;
